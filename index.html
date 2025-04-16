@@ -1063,9 +1063,10 @@
             <span class="skill-tag">SQL</span>
           </div>
         </div>
-        <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Devansh Yadav working on AI project">
+        <div class="about-image elite-photo">
+          <img src="devansh.png" alt="Devansh Yadav portrait">
         </div>
+        
       </div>
     </div>
   </section>
@@ -1619,6 +1620,46 @@ body.dark-mode .resume-modal-close {
   .resume-buttons {
     flex-direction: column;
   }
+  .elite-photo {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transform: perspective(1000px);
+  }
+  
+  .elite-photo img {
+    width: 100%;
+    display: block;
+    transition: transform 0.8s ease, filter 0.4s ease;
+    filter: brightness(0.95) contrast(1.05);
+  }
+  
+  .elite-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0,209,178,0.5);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .elite-photo:hover {
+    transform: scale(1.03) rotateX(3deg) rotateY(3deg);
+    box-shadow: 0 20px 30px rgba(0, 209, 178, 0.25);
+  }
+  
+  .elite-photo:hover img {
+    transform: scale(1.05);
+    filter: brightness(1) contrast(1.1);
+  }
+  
+  .elite-photo:hover::before {
+    opacity: 1;
+  }
+  
   
   .resume-buttons .btn {
     width: 100%;
@@ -1706,7 +1747,7 @@ body.dark-mode .resume-modal-close {
         <h2>Want to know more about my professional journey?</h2>
         <p>Download my detailed resume to see my complete work history, education, and technical skills.</p>
         <div class="resume-buttons">
-          <a href="Devansh_Yadav_Resume.pdf" class="btn btn-primary" download="Devansh_Yadav_Resume.pdf">
+          <a href="path/to/your-resume.pdf" class="btn btn-primary" download="Devansh_Yadav_Resume.pdf">
             <i class="fas fa-download"></i> Download Resume
           </a>
           <a href="#contact" class="btn btn-outline">
@@ -1742,10 +1783,10 @@ body.dark-mode .resume-modal-close {
           <a href="#contact">Contact</a>
         </div>
         <div class="social-links">
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/devansh-yadav-030b8b201/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/devansh0006" aria-label="GitHub"><i class="fab fa-github"></i></a>
           <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="Medium"><i class="fab fa-medium-m"></i></a>
+          <a href="https://medium.com/@devymh24" aria-label="Medium"><i class="fab fa-medium-m"></i></a>
         </div>
         <p class="copyright">© 2025 Devansh Yadav. All rights reserved.</p>
       </div>
@@ -2040,6 +2081,23 @@ resumeModal.addEventListener('click', (e) => {
     document.body.style.overflow = 'auto';
   }
 });
+
+  const photo = document.querySelector('.elite-photo');
+
+  photo.addEventListener('mousemove', (e) => {
+    const rect = photo.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * 5;
+    const rotateY = ((x - centerX) / centerX) * -5;
+    photo.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+  });
+
+  photo.addEventListener('mouseleave', () => {
+    photo.style.transform = 'rotateX(0) rotateY(0) scale(1)';
+  });
 
   </script>
 </body>
